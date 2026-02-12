@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Send Notification</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+  <div class="container">
+    <div class="card">
+      <h2>Send Notification</h2>
+      <form action="../backend/send_notification.php" method="POST">
+        <label>Message</label>
+        <textarea name="message" placeholder="Enter your message" required></textarea>
+
+        <label>Send To</label>
+        <select name="role" required>
+          <option value="all">All</option>
+          <option value="student">Students</option>
+          <option value="club_member">Club Members</option>
+        </select>
+
+        <label>Optional (send to a specific user)</label>
+        <input type="text" name="user" placeholder="Leave blank for role-wide message">
+
+        <button type="submit">Send Notification</button>
+      </form>
+      <br>
+      <a class="button" href="admin_dashboard.html">← Back to Dashboard</a>
+    </div>
+  </div>
+</body>
+</html>

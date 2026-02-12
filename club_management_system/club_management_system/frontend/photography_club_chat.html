@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Photography Club Chat Room</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+  <div class="container">
+    <h2>Photography Club Chat Room</h2>
+    <div id="chatbox" style="background:#eee;padding:10px;height:300px;overflow:auto;"></div>
+    <form id="chatForm">
+      <input type="hidden" name="club" value="photography_club">
+      <input type="text" name="sender" placeholder="Your name" required>
+      <input type="text" name="message" placeholder="Message" required>
+      <button type="submit">Send</button>
+    </form>
+    <a class="button" href="../frontend/club_member_dashboard.html">Back to Dashboard</a>
+  </div>
+  <script>
+    function loadChat() {
+      fetch("../backend/fetch_club_chat.php?club=photography_club")
+        .then(res => res.text())
+        .then(html => document.getElementById("chatbox").innerHTML = html);
+    }
+    loadChat();
+    setInterval(loadChat, 3000);
+
+    document.getElementById("chatForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+      fetch("../backend/send_club_chat.php", {
+        method: "POST",
+        body: new FormData(this)
+      }).then(() => {
+        this.message.value = "";
+        loadChat();
+      });
+    });
+  </script>
+</body>
+</html>

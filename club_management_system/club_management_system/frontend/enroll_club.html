@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Enroll in a Club</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <h2>Enroll in a Club</h2>
+    <form method="POST" action="../backend/enroll_club.php">
+      <label for="club">Select Club</label>
+      <select name="club" required>
+        <option value="">-- Select --</option>
+        <option value="Dance Club">Dance Club</option>
+        <option value="Music Club">Music Club</option>
+        <option value="Drama Club">Drama Club</option>
+        <option value="Photography Club">Photography Club</option>
+      </select>
+      <button type="submit">Enroll</button>
+    </form>
+    <a class="button" href="student_dashboard.html">← Back to Dashboard</a>
+  </div>
+</body>
+</html>

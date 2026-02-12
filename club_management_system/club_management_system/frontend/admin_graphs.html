@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Admin Stats</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <h2>Graphical Statistics</h2>
+    <canvas id="eventsPerMonth" width="400" height="200"></canvas>
+    <canvas id="roleDistribution" width="400" height="200"></canvas>
+    <canvas id="approvalStatus" width="400" height="200"></canvas>
+    <a class="button" href="admin_dashboard.html">Back to Dashboard</a>
+  </div>
+  <script>
+    fetch("../backend/graph_data.php")
+      .then(res => res.json())
+      .then(data => {
+        const ctx1 = document.getElementById('eventsPerMonth').getContext('2d');
+        new Chart(ctx1, {
+          type: 'bar',
+          data: {
+            labels: data.eventMonths,
+            datasets: [{
+              label: 'Events per Month',
+              data: data.eventCounts,
+              backgroundColor: 'rgba(75, 192, 192, 0.5)'
+            }]
+          }
+        });
+
+        const ctx2 = document.getElementById('roleDistribution').getContext('2d');
+        new Chart(ctx2, {
+          type: 'pie',
+          data: {
+            labels: ['Admins', 'Club Members', 'Students'],
+            datasets: [{
+              label: 'Users by Role',
+              data: [data.admins, data.club_members, data.students],
+              backgroundColor: ['#f39c12', '#3498db', '#2ecc71']
+            }]
+          }
+        });
+
+        const ctx3 = document.getElementById('approvalStatus').getContext('2d');
+        new Chart(ctx3, {
+          type: 'doughnut',
+          data: {
+            labels: ['Approved', 'Pending'],
+            datasets: [{
+              data: [data.approved, data.pending],
+              backgroundColor: ['#2ecc71', '#e74c3c']
+            }]
+          }
+        });
+      });
+  </script>
+</body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Add Event with Media</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+  <div class="container">
+    <h2>Create New Event</h2>
+    <form action="add_event_media.php" method="POST" enctype="multipart/form-data">
+      <input type="text" name="wname" placeholder="Event Name" required>
+      <input type="date" name="wdate" required>
+      <input type="time" name="wtime" required>
+      <input type="text" name="venue" placeholder="Venue" required>
+      <input type="text" name="wshow" placeholder="Display Name" required>
+      <textarea name="wdesc" placeholder="Description" required></textarea>
+      <label>Upload Image:</label>
+      <input type="file" name="image" accept="image/*">
+      <label>Upload Video:</label>
+      <input type="file" name="video" accept="video/*">
+      <button type="submit">Add Event</button>
+    </form>
+    <a class="button" href="../frontend/admin_dashboard.html">Back to Dashboard</a>
+  </div>
+</body>
+</html>
