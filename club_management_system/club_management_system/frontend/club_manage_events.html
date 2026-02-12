@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Manage Club Events</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <h2>My Club Events</h2>
+    <div id="eventsList">Loading events...</div>
+    <a class="button" href="club_member_dashboard.html">← Back to Dashboard</a>
+  </div>
+  <script>
+    fetch("../backend/fetch_club_events.php")
+      .then(res => res.text())
+      .then(html => document.getElementById("eventsList").innerHTML = html);
+  </script>
+</body>
+</html>

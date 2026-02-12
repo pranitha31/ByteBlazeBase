@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Admin Dashboard</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>Admin Dashboard</h1>
+    <h3>Overview</h3>
+    <p><strong>Pending Event Requests:</strong> <span id="pendingCount">Loading...</span></p>
+    <button class="button" onclick="location.href='../backend/pending_events.php'">🗂 Review Pending Events</button>
+    <div class="button-row">
+      <button class="button" onclick="location.href='send_notification.html'">📨 Send Notification</button>
+      <button class="button" onclick="location.href='notifications.php'">🔔 View Notifications</button>
+      <button class="button" onclick="location.href='../backend/add_event_media.html'">📁 Add Event with Media</button>
+      <button class="button" onclick="location.href='../backend/export_events.php'">📤 Export Events</button>
+      <button class="button" onclick="location.href='../backend/export_members.php'">👥 Export Club Members</button>
+      <button class="button" onclick="location.href='admin_graphs.html'">📊 View Statistics</button>
+      <button class="button" onclick="location.href='../backend/resource_requests.php'">📦 View Requested Resources</button>
+      <button class="button" onclick="location.href='admin_general_chat.html'">💬 General Admin Chat</button>
+       <button class="button" onclick="location.href='../backend/admin_approval.php'">Approve Club Members</a>
+      <button class="button" onclick="location.href='../backend/logout.php'">🚪 Logout</button>
+    </div>
+  </div>
+  <script>
+    fetch("../backend/pending_count.php")
+      .then(res => res.text())
+      .then(txt => document.getElementById("pendingCount").innerText = txt);
+  </script>
+</body>
+</html>

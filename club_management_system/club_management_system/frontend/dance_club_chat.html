@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Dance Club Chat Room</title>
+  <link rel="stylesheet" href="../style.css" />
+  <style>
+    #chatBox {
+      height: 300px;
+      overflow-y: scroll;
+      border: 1px solid #ccc;
+      padding: 10px;
+      margin-bottom: 15px;
+      background: #fefefe;
+    }
+    #chatBox div {
+      margin-bottom: 8px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Dance Club Chat Room</h2>
+    <div id="chatBox">Loading messages...</div>
+    <form id="chatForm">
+      <input type="text" name="sender" placeholder="Your Name" required />
+      <input type="text" name="message" placeholder="Type a message..." required />
+      <button type="submit">Send</button>
+    </form>
+    <a class="button" href="../admin_dashboard.html">← Back to Dashboard</a>
+  </div>
+  <script>
+    function fetchMessages() {
+      fetch("../../backend/chat_fetch.php?club=Dance Club")
+        .then(res => res.text())
+        .then(data => {
+          document.getElementById("chatBox").innerHTML = data;
+        });
+    }
+
+    document.getElementById("chatForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+      const formData = new FormData(this);
+      formData.append("club", "Dance Club");
+
+      fetch("../../backend/chat_send.php", {
+        method: "POST",
+        body: formData
+      }).then(() => {
+        this.reset();
+        fetchMessages();
+      });
+    });
+
+    setInterval(fetchMessages, 3000);
+    fetchMessages();
+  </script>
+</body>
+</html>

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Request Password Reset</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <h2>Request Password Reset</h2>
+    <form action="../backend/send_reset.php" method="POST">
+      <input type="email" name="email" placeholder="Your Email" required />
+
+      <button type="submit">Submit</button>
+    </form>
+    <a class="button" href="index.html">Back to Home</a>
+  </div>
+</body>
+</html>
